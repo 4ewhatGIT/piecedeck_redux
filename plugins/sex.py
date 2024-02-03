@@ -1,2 +1,2 @@
-def sex():
+def script():
     print("sex")
