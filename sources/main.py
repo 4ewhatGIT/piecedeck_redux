@@ -31,21 +31,24 @@ def title_screen(PD_NAME, VERSION) -> None:
             sleep(rint(2, 10) / 10)
         sleep(0.2)
     print()
-    print(f"Welcome to {PD_NAME} version {VERSION}!")
+    print(f"Welcome to {PD_NAME} v{VERSION}!")
 
 
 def selector_screen(plugins: list, PD_NAME, VERSION) -> None:
     selector_active = True
     while selector_active:
+        p = 0
         for i in range(len(plugins)):
             print(f'{i + 1}: {plugins[i]}')
+            p = i + 2
+        print(f'{p}: exit {PD_NAME} v{VERSION}')
         selected = input('Select a plugin to run: ')
         if selected.isdigit():
-            if int(selected - 1) < len(plugins):
+            if int(selected) - 1 < len(plugins):
                 func = globals()[plugins[int(selected) - 1]].script
                 func()
             else:
-                print(f'Thank you for using {PD_NAME} version {VERSION}!')
+                print(f'Thank you for using {PD_NAME} v{VERSION}!')
                 exit()
         else:
             print('Input only integers!')
