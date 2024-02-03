@@ -2,6 +2,10 @@ import json
 from random import randint as rint
 from time import sleep
 
+import importer
+
+importer.do("../plugins", globals())
+
 CONFIG = "config.json"
 
 
@@ -23,6 +27,12 @@ def title_screen(PD_NAME, VERSION) -> None:
         sleep(0.2)
     print()
     print(f"Welcome to {PD_NAME} version {VERSION}!")
+
+
+def selector_screen(modules: list) -> None:
+    selector_active = True
+    while selector_active:
+        pass
 
 
 def main() -> None:
