@@ -2,15 +2,13 @@ import json
 from random import randint as rint
 from time import sleep
 
-from stock import *
 from sources import importer
+from stock import *
 
 plugins = list(importer.__get_module_names_in_dir("../plugins"))
 for i in range(len(stock_plugins)):
     plugins.append(stock_plugins[i])
 importer.do("../plugins", globals())
-print(plugins)
-print(globals())
 CONFIG = "../config.json"
 
 
@@ -56,14 +54,15 @@ def selector_screen(plugins: list, PD_NAME, VERSION) -> None:
             continue
 
 
-
 def main() -> None:
     config = initialize(CONFIG)
     PD_NAME = config["PD_NAME"]
     dev_mode = config["dev_mode"]
     VERSION = config["VERSION"]
-    print(plugins)
+
     if dev_mode:
+        print('Plugins:', end=' ')
+        print(plugins)
         print(f"< {PD_NAME} config:")
         for k in config.keys():
             print(f"<< {k} = {config[k]}")

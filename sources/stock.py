@@ -1,43 +1,40 @@
 import os
-import sys
-
-
-class echo:
-    def script():
-        print(input('> '))
 
 
 class explorer:
 
+    @staticmethod
     def script():
         os.chdir('../workplace')
         while True:
             select = input('> ')
-            if int(select) == 0:
-                print(os.getcwd())
-                os.chdir(input())
-                print(os.getcwd())
-            elif int(select) == 1:
-                print(os.getcwd())
-                input_ = input()
-                if not os.path.isdir(input_):
-                    os.mkdir(input_)
-                print(os.getcwd())
-            elif int(select) == 2:
-                for dirpath, dirnames, filenames in os.walk("."):
-                    # перебрать каталоги
-                    for dirname in dirnames:
-                        print("Каталог:", os.path.join(dirpath, dirname))
-                    # перебрать файлы
-                    for filename in filenames:
-                        print("Файл:", os.path.join(dirpath, filename))
+            match select.split()[0]:
+                case 'cd':
+                    os.chdir(' '.join(select.split()[1:]))
+                case 'cd..':
+                    os.chdir('..')
+                case 'dir':
+                    folders = [fname for fname in os.listdir(".") if os.path.isdir(fname)]
+                    files = [fname for fname in os.listdir(".") if not os.path.isdir(fname)]
+                    for f in folders:
+                        print('}--', f)
+                    for f in files:
+                        print('}', f)
+                case 'mkdir':
+                    if not os.path.isdir(''.join(select.split()[1:])):
+                        os.mkdir(' '.join(select.split()[1:]))
+                case 'rmdir':
+                    if os.path.isdir(''.join(select.split()[1:])):
+                        os.rmdir(' '.join(select.split()[1:]))
+                case 'echo':
+                    if '>' in select.split()[1:]:
+                        with open(select.split('>')[1].strip(), 'w') as file:
+                            file.write(select.split('>')[0].removeprefix('echo '))
+                case 'exit':
+                    break
 
 
-
-explorer.script()
-
+# explorer.script()
 
 
-
-
-stock_plugins = ['echo']
+stock_plugins = ['explorer']

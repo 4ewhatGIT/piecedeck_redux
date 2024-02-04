@@ -1,6 +1,5 @@
 {
-  "dev_mode": true,
+  "dev_mode": false,
   "PD_NAME": "PieceDeck redux",
-  "VERSION": "0.0.2"
-
+  "VERSION": "0.0.3"
 }
