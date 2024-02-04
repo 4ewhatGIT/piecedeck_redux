@@ -47,6 +47,7 @@ def selector_screen(plugins: list, PD_NAME, VERSION) -> None:
             if int(selected) - 1 < len(plugins):
                 func = globals()[plugins[int(selected) - 1]].script
                 func()
+                sleep(0.7)
             else:
                 print(f'Thank you for using {PD_NAME} v{VERSION}!')
                 exit()
